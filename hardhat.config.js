@@ -4,6 +4,7 @@ require("@nomiclabs/hardhat-etherscan")
 require("dotenv").config()
 require("solidity-coverage")
 require("hardhat-deploy")
+require("@nomiclabs/hardhat-solhint")
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 /**
@@ -11,15 +12,10 @@ require("hardhat-deploy")
  */
 
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || ""
-const KOVAN_RPC_URL =
-    process.env.KOVAN_RPC_URL ||
-    "https://eth-mainnet.alchemyapi.io/v2/your-api-key"
-const RINKEBY_RPC_URL =
-    process.env.RINKEBY_RPC_URL ||
-    "https://eth-mainnet.alchemyapi.io/v2/your-api-key"
-const PRIVATE_KEY =
-    process.env.PRIVATE_KEY ||
-    "0x11ee3108a03081fe260ecdc106554d09d9d1209bcafd46942b10e02943effc4a"
+
+const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL
+
+const PRIVATE_KEY = process.env.PRIVATE_KEY
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
 
 module.exports = {
@@ -29,13 +25,7 @@ module.exports = {
             chainId: 31337,
             // gasPrice: 130000000000,
         },
-        kovan: {
-            url: KOVAN_RPC_URL,
-            accounts: [PRIVATE_KEY],
-            chainId: 42,
-            blockConfirmations: 6,
-            gas: 6000000,
-        },
+
         rinkeby: {
             url: RINKEBY_RPC_URL,
             accounts: [PRIVATE_KEY],
